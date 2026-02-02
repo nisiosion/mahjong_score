@@ -55,4 +55,48 @@
   ];
 
   // 初期レート
-  let rating =
+  let rating = 1500;
+
+  // 順位→ポイント
+  function resultPoint(rank) {
+    if (rank === 1) return 30;
+    if (rank === 2) return 10;
+    if (rank === 3) return -10;
+    if (rank === 4) return -30;
+    return 0;
+  }
+
+  // 試合数補正
+  function matchFactor(matchCount) {
+    if (matchCount < 400) {
+      return 1 - matchCount * 0.002;
+    }
+    return 0.2;
+  }
+
+  const table = document.getElementById("gameTable");
+
+  games.forEach((game, index) => {
+    const matchCount = index; // 開始前の試合数
+    const factor = matchFactor(matchCount);
+    const delta = factor * resultPoint(game.rank);
+    rating += delta;
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${game.date}</td>
+      <td>${game.rank}</td>
+      <td>${game.score.toLocaleString()}</td>
+      <td>${rating.toFixed(1)}</td>
+    `;
+    table.appendChild(tr);
+  });
+
+  document.getElementById("summary").innerHTML = `
+    <div>半荘数：${games.length}</div>
+    <div>最終レート：${rating.toFixed(1)}</div>
+  `;
+</script>
+
+</body>
+</html>
