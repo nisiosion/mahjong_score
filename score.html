@@ -2,85 +2,12 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>麻雀 成績管理（サンプル）</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      padding: 16px;
-      background: #f7f7f7;
-    }
-    h1 {
-      font-size: 20px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      margin-top: 12px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 6px;
-      text-align: center;
-    }
-    .summary {
-      margin-top: 16px;
-      background: #fff;
-      padding: 12px;
-    }
-  </style>
+  <title>麻雀成績</title>
 </head>
 <body>
 
-<h1>麻雀 成績管理（サンプル）</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>日付</th>
-      <th>順位</th>
-      <th>点数</th>
-    </tr>
-  </thead>
-  <tbody id="gameTable"></tbody>
-</table>
-
-<div class="summary" id="summary"></div>
-
-<script>
-  // サンプル成績データ
-  const games = [
-    { date: "2026-01-10", rank: 1, score: 42000 },
-    { date: "2026-01-12", rank: 3, score: 18000 },
-    { date: "2026-01-15", rank: 2, score: 32000 },
-    { date: "2026-01-20", rank: 4, score: 8000 }
-  ];
-
-  const table = document.getElementById("gameTable");
-
-  games.forEach(game => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${game.date}</td>
-      <td>${game.rank}</td>
-      <td>${game.score.toLocaleString()}</td>
-    `;
-    table.appendChild(tr);
-  });
-
-  // 集計
-  const totalGames = games.length;
-  const totalScore = games.reduce((sum, g) => sum + g.score, 0);
-  const avgRank = (
-    games.reduce((sum, g) => sum + g.rank, 0) / totalGames
-  ).toFixed(2);
-
-  document.getElementById("summary").innerHTML = `
-    <div>半荘数：${totalGames}</div>
-    <div>合計点：${totalScore.toLocaleString()}</div>
-    <div>平均順位：${avgRank}</div>
-  `;
-</script>
+<h1>麻雀 成績管理</h1>
+<p>ここに成績が表示されます。</p>
 
 </body>
 </html>
