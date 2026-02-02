@@ -9,9 +9,6 @@
       padding: 16px;
       background: #f5f5f5;
     }
-    h1 {
-      font-size: 20px;
-    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -32,7 +29,7 @@
 </head>
 <body>
 
-<h1>麻雀 成績管理（サンプル）</h1>
+<h1>麻雀 成績管理（レーティング付）</h1>
 
 <table>
   <thead>
@@ -40,6 +37,7 @@
       <th>日付</th>
       <th>順位</th>
       <th>点数</th>
+      <th>レート</th>
     </tr>
   </thead>
   <tbody id="gameTable"></tbody>
@@ -48,7 +46,7 @@
 <div class="summary" id="summary"></div>
 
 <script>
-  // サンプル成績データ
+  // サンプル成績
   const games = [
     { date: "2026-01-05", rank: 1, score: 42000 },
     { date: "2026-01-08", rank: 2, score: 33000 },
@@ -56,31 +54,5 @@
     { date: "2026-01-18", rank: 3, score: 21000 }
   ];
 
-  const table = document.getElementById("gameTable");
-
-  games.forEach(game => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${game.date}</td>
-      <td>${game.rank}</td>
-      <td>${game.score.toLocaleString()}</td>
-    `;
-    table.appendChild(tr);
-  });
-
-  // 集計
-  const totalGames = games.length;
-  const totalScore = games.reduce((sum, g) => sum + g.score, 0);
-  const avgRank = (
-    games.reduce((sum, g) => sum + g.rank, 0) / totalGames
-  ).toFixed(2);
-
-  document.getElementById("summary").innerHTML = `
-    <div>半荘数：${totalGames}</div>
-    <div>合計点：${totalScore.toLocaleString()}</div>
-    <div>平均順位：${avgRank}</div>
-  `;
-</script>
-
-</body>
-</html>
+  // 初期レート
+  let rating =
